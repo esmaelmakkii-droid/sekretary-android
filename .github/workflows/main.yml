@@ -14,11 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract V5.2
-        run: rm -rf sekretary_android && unzip -q sekretary_v5_2_full_alarm.zip && mv sekretary_v5_2_project sekretary_android
+      - name: Prepare project
+        run: rm -rf sekretary_android && unzip -q -o sekretary_v5_2_full_alarm.zip && mkdir -p sekretary_android/app/src/main/assets && cp supabase-config.js sekretary_android/app/src/main/assets/supabase-config.js
 
-      - name: Copy Supabase config
-        run: mkdir -p sekretary_android/app/src/main/assets && cp supabase-config.js sekretary_android/app/src/main/assets/supabase-config.js - name: Setup Java 17
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
